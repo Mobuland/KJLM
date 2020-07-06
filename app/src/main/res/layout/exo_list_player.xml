@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_detail_player"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/post_detail_nested_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="我发斯蒂芬是打发阿斯蒂芬撒地我发斯蒂芬是打发阿斯蒂芬撒地方我打发阿斯
+        发斯蒂芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方我发斯蒂打发阿斯蒂芬撒地方我蒂芬撒发
+        我发斯蒂芬是打发阿斯蒂芬撒地方我发斯蒂撒地方芬是打发阿斯蒂打发阿斯蒂芬撒地方我撒地方我我蒂芬撒
+        芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒
+        地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方芬是打发阿斯蒂芬撒地撒
+        撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是阿斯蒂芬撒地撒
+        打发阿斯蒂芬撒地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方芬是打撒
+        发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿
+        芬撒地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方我发斯蒂芬是打发阿
+        发斯蒂芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方我发斯蒂打发阿斯蒂芬撒地方我蒂芬撒发
+        我发斯蒂芬是打发阿斯蒂芬撒地方我发斯蒂撒地方芬是打发阿斯蒂打发阿斯蒂芬撒地方我撒地方我我蒂芬撒
+        芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒
+        地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方芬是打发阿斯蒂芬撒地撒
+        撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是阿斯蒂芬撒地撒
+        打发阿斯蒂芬撒地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方芬是打撒
+        发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿
+        芬撒地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方我发斯蒂芬是打发阿
+        发斯蒂芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方我发斯蒂打发阿斯蒂芬撒地方我蒂芬撒发
+        我发斯蒂芬是打发阿斯蒂芬撒地方我发斯蒂撒地方芬是打发阿斯蒂打发阿斯蒂芬撒地方我撒地方我我蒂芬撒
+        芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒
+        地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方芬是打发阿斯蒂芬撒地撒
+        撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是阿斯蒂芬撒地撒
+        打发阿斯蒂芬撒地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方芬是打撒
+        发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿
+        芬撒地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方我发斯蒂芬是打发阿
+        发斯蒂芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方我发斯蒂打发阿斯蒂芬撒地方我蒂芬撒发
+        我发斯蒂芬是打发阿斯蒂芬撒地方我发斯蒂撒地方芬是打发阿斯蒂打发阿斯蒂芬撒地方我撒地方我我蒂芬撒
+        芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒
+        地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方芬是打发阿斯蒂芬撒地撒
+        撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是阿斯蒂芬撒地撒
+        打发阿斯蒂芬撒地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方芬是打撒
+        发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿
+        芬撒地方方撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方撒地方我发斯蒂芬是打发阿
+        撒地方芬是打发阿斯蒂芬撒地方我发斯蒂芬是打发阿斯蒂芬撒地方方"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <com.example.myapplication.exo.ExoPlayerView
+        android:id="@+id/detail_player"
+        android:layout_width="match_parent"
+        android:layout_height="200dp" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/detail_player">
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:text="下一级" />
+
+
+    </RelativeLayout>
+</RelativeLayout>
