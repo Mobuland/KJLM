@@ -3,7 +3,8 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.myapplication.exo.ExoListPlayer;
+import com.example.myapplication.exo.DetailExoListPlayer;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -28,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), ExoListPlayer.class);
+                Intent intent = new Intent(getBaseContext(), DetailExoListPlayer.class);
                 startActivity(intent);
             }
         });

@@ -16,12 +16,13 @@ import java.util.List;
 import tv.danmaku.ijk.media.player.IMediaPlayer;
 
 /**
- * 自定义player管理器 装贼自定义的exo player 实现无缝切换
+ * Created by guoshuyu on 2018/5/16.
+ * 自定义player管理器，装载自定义exo player，实现无缝切换效果
  */
-public class ExoPlayerManager extends BasePlayerManager {
+public class GSYExoPlayerManager extends BasePlayerManager {
 
-    private ExoMediaPlayer mediaPlayer;
-    //关键
+    private GSYExo2MediaPlayer mediaPlayer;
+
     private Surface surface;
 
     private DummySurface dummySurface;
@@ -33,22 +34,21 @@ public class ExoPlayerManager extends BasePlayerManager {
 
     @Override
     public void initVideoPlayer(Context context, Message msg, List<VideoOptionModel> optionModelList, ICacheManager cacheManager) {
-        mediaPlayer = new ExoMediaPlayer(context);
+        mediaPlayer = new GSYExo2MediaPlayer(context);
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        if(dummySurface == null){
-            dummySurface = DummySurface.newInstanceV17(context,false);
+        if (dummySurface == null) {
+            dummySurface = DummySurface.newInstanceV17(context, false);
         }
-        try{
-            mediaPlayer.setLooping(((ExoModel)msg.obj).isLooping());
-            Debuger.printfError("###### " + ((ExoModel) msg.obj).getOverrideExtension());
-            mediaPlayer.setOverrideExtension(((ExoModel) msg.obj).getOverrideExtension());
-            mediaPlayer.setDataSource(((ExoModel) msg.obj).getUrls(), ((ExoModel) msg.obj).getMapHeadData(), ((ExoModel) msg.obj).index, ((ExoModel) msg.obj).isCache());
-            //设置速度EXO2的setSpeed只能在播放前生效
-            if (((ExoModel) msg.obj).getSpeed() != 1 && ((ExoModel) msg.obj).getSpeed() > 0) {
-                mediaPlayer.setSpeed(((ExoModel) msg.obj).getSpeed(), 1);
+        try {
+            mediaPlayer.setLooping(((GSYExoModel) msg.obj).isLooping());
+            Debuger.printfError("###### " + ((GSYExoModel) msg.obj).getOverrideExtension());
+            mediaPlayer.setOverrideExtension(((GSYExoModel) msg.obj).getOverrideExtension());
+            mediaPlayer.setDataSource(((GSYExoModel) msg.obj).getUrls(), ((GSYExoModel) msg.obj).getMapHeadData(), ((GSYExoModel) msg.obj).index, ((GSYExoModel) msg.obj).isCache());
+            //很遗憾，EXO2的setSpeed只能在播放前生效
+            if (((GSYExoModel) msg.obj).getSpeed() != 1 && ((GSYExoModel) msg.obj).getSpeed() > 0) {
+                mediaPlayer.setSpeed(((GSYExoModel) msg.obj).getSpeed(), 1);
             }
-        }catch (Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

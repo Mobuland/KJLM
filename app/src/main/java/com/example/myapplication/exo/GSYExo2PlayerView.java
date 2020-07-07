@@ -1,23 +1,19 @@
 package com.example.myapplication.exo;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.media.AudioManager;
-import android.os.Message;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
+
 
 import com.example.myapplication.R;
 import com.shuyu.gsyvideoplayer.model.GSYVideoModel;
-import com.shuyu.gsyvideoplayer.player.IPlayerManager;
-import com.shuyu.gsyvideoplayer.utils.CommonUtil;
 import com.shuyu.gsyvideoplayer.utils.Debuger;
 import com.shuyu.gsyvideoplayer.utils.NetworkUtils;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
@@ -31,13 +27,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.example.myapplication.exo.ExoMediaPlayer.POSITION_DISCONTINUITY;
+import static com.example.myapplication.exo.GSYExo2MediaPlayer.POSITION_DISCONTINUITY;
+
 
 /**
- * 自定义View支持list数据 实现无缝切换
- * 通过player内部 ConcatenatingMediaSource实现列表播放
+ * Created by guoshuyu on 2018/5/16.
+ * 自定义View支持exo的list数据，实现无缝切换效果
+ * 这是一种思路，通过自定义后GSYExo2MediaPlayer内部，通过ConcatenatingMediaSource实现列表播放
+ * 诸如此类，还可以实现AdsMediaSource等
  */
-public class ExoPlayerView extends StandardGSYVideoPlayer {
+
+public class GSYExo2PlayerView extends StandardGSYVideoPlayer {
+
     protected List<GSYVideoModel> mUriList = new ArrayList<>();
     protected int mPlayPosition;
     protected boolean mExoCache = false;
@@ -45,15 +46,15 @@ public class ExoPlayerView extends StandardGSYVideoPlayer {
     /**
      * 1.5.0开始加入，如果需要不同布局区分功能，需要重载
      */
-    public ExoPlayerView(Context context, Boolean fullFlag) {
+    public GSYExo2PlayerView(Context context, Boolean fullFlag) {
         super(context, fullFlag);
     }
 
-    public ExoPlayerView(Context context) {
+    public GSYExo2PlayerView(Context context) {
         super(context);
     }
 
-    public ExoPlayerView(Context context, AttributeSet attrs) {
+    public GSYExo2PlayerView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -121,8 +122,8 @@ public class ExoPlayerView extends StandardGSYVideoPlayer {
     @Override
     protected void cloneParams(GSYBaseVideoPlayer from, GSYBaseVideoPlayer to) {
         super.cloneParams(from, to);
-        ExoPlayerView sf = (ExoPlayerView) from;
-        ExoPlayerView st = (ExoPlayerView) to;
+        GSYExo2PlayerView sf = (GSYExo2PlayerView) from;
+        GSYExo2PlayerView st = (GSYExo2PlayerView) to;
         st.mPlayPosition = sf.mPlayPosition;
         st.mUriList = sf.mUriList;
         st.mExoCache = sf.mExoCache;
@@ -133,7 +134,7 @@ public class ExoPlayerView extends StandardGSYVideoPlayer {
     public GSYBaseVideoPlayer startWindowFullscreen(Context context, boolean actionBar, boolean statusBar) {
         GSYBaseVideoPlayer gsyBaseVideoPlayer = super.startWindowFullscreen(context, actionBar, statusBar);
         if (gsyBaseVideoPlayer != null) {
-            ExoPlayerView GSYExo2PlayerView = (ExoPlayerView) gsyBaseVideoPlayer;
+            GSYExo2PlayerView GSYExo2PlayerView = (GSYExo2PlayerView) gsyBaseVideoPlayer;
             GSYVideoModel gsyVideoModel = mUriList.get(mPlayPosition);
             if (!TextUtils.isEmpty(gsyVideoModel.getTitle())) {
                 GSYExo2PlayerView.mTitleTextView.setText(gsyVideoModel.getTitle());
@@ -184,7 +185,7 @@ public class ExoPlayerView extends StandardGSYVideoPlayer {
             Debuger.printfError("********************** urls isEmpty . Do you know why ? **********************");
         }
 
-        ((ExoVideoManager) getGSYVideoManager()).prepare(urls, (mMapHeadData == null) ? new HashMap<String, String>() : mMapHeadData, mPlayPosition, mLooping, mSpeed, mExoCache, mCachePath, mOverrideExtension);
+        ((GSYExoVideoManager) getGSYVideoManager()).prepare(urls, (mMapHeadData == null) ? new HashMap<String, String>() : mMapHeadData, mPlayPosition, mLooping, mSpeed, mExoCache, mCachePath, mOverrideExtension);
 
         setStateAndUi(CURRENT_STATE_PREPAREING);
     }
@@ -195,26 +196,7 @@ public class ExoPlayerView extends StandardGSYVideoPlayer {
      */
     @Override
     protected void showWifiDialog() {
-        if (!NetworkUtils.isAvailable(mContext)) {
-            startPlayLogic();
-            return;
-        }
-        AlertDialog.Builder builder = new AlertDialog.Builder(getActivityContext());
-        builder.setMessage(getResources().getString(R.string.tips_not_wifi));
-        builder.setPositiveButton(getResources().getString(R.string.tips_not_wifi_confirm), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-                startPlayLogic();
-            }
-        });
-        builder.setNegativeButton(getResources().getString(R.string.tips_not_wifi_cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        builder.create().show();
+        startPlayLogic();
     }
 
     public void setExoCache(boolean exoCache) {
@@ -225,34 +207,34 @@ public class ExoPlayerView extends StandardGSYVideoPlayer {
 
     @Override
     public GSYVideoViewBridge getGSYVideoManager() {
-        ExoVideoManager.instance().initContext(getContext().getApplicationContext());
-        return ExoVideoManager.instance();
+        GSYExoVideoManager.instance().initContext(getContext().getApplicationContext());
+        return GSYExoVideoManager.instance();
     }
 
     @Override
     protected boolean backFromFull(Context context) {
-        return ExoVideoManager.backFromWindowFull(context);
+        return GSYExoVideoManager.backFromWindowFull(context);
     }
 
     @Override
     protected void releaseVideos() {
-        ExoVideoManager.releaseAllVideos();
+        GSYExoVideoManager.releaseAllVideos();
     }
 
     @Override
     protected int getFullId() {
-        return ExoVideoManager.FULLSCREEN_ID;
+        return GSYExoVideoManager.FULLSCREEN_ID;
     }
 
     @Override
     protected int getSmallId() {
-        return ExoVideoManager.SMALL_ID;
+        return GSYExoVideoManager.SMALL_ID;
     }
 
     @Override
     public void onInfo(int what, int extra) {
         if (what == POSITION_DISCONTINUITY) {
-            int window = ((ExoMediaPlayer) getGSYVideoManager().getPlayer().getMediaPlayer()).getCurrentWindowIndex();
+            int window = ((GSYExo2MediaPlayer) getGSYVideoManager().getPlayer().getMediaPlayer()).getCurrentWindowIndex();
             mPlayPosition = window;
             GSYVideoModel gsyVideoModel = mUriList.get(window);
             if (!TextUtils.isEmpty(gsyVideoModel.getTitle())) {
