@@ -5,6 +5,8 @@ import android.os.Bundle;
 
 import com.example.myapplication.exo.DetailExoListPlayer;
 
+import com.example.myapplication.noui.PlayEmptyControlActivity;
+import com.example.myapplication.simple.SimplePlayer;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -15,6 +17,7 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -33,6 +36,34 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button button = findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), SimplePlayer.class);
+                startActivity(intent);
+            }
+        });
+
+        Button button2 = findViewById(R.id.button2);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), PlayEmptyControlActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button button3 = findViewById(R.id.button3);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getBaseContext(), DetailExoListPlayer.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     @Override
