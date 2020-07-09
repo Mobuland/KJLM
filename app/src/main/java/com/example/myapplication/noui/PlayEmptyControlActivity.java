@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.transition.Transition;
 
 import com.example.myapplication.R;
+import com.shuyu.gsyvideoplayer.GSYBaseActivityDetail;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 
@@ -40,12 +41,14 @@ public class PlayEmptyControlActivity extends AppCompatActivity {
     }
 
     private void init() {
-        String url = "https://res.exexm.com/cw_145225549855002";
+        String url = "http://7xjmzj.com1.z0.glb.clouddn.com/20171026175005_JObCxCE2.mp4";
 
         videoPlayer.setUp(url, true, "");
-
+        orientationUtils = new OrientationUtils(this,videoPlayer);
+        orientationUtils.resolveByClick();
         //过渡动画
         initTransition();
+        videoPlayer.startWindowFullscreen(this,true,true);
     }
 
 
@@ -57,6 +60,7 @@ public class PlayEmptyControlActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -88,14 +92,15 @@ public class PlayEmptyControlActivity extends AppCompatActivity {
 
 
     private void initTransition() {
-        if (isTransition && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        /*if (isTransition && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             postponeEnterTransition();
             ViewCompat.setTransitionName(videoPlayer, IMG_TRANSITION);
             addTransitionListener();
             startPostponedEnterTransition();
         } else {
             videoPlayer.startPlayLogic();
-        }
+        }*/
+        videoPlayer.startPlayLogic();
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
