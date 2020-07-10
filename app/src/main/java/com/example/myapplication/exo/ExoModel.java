@@ -12,12 +12,12 @@ import java.util.Map;
  * 自定义列表数据model
  */
 
-public class GSYExoModel extends GSYModel {
+public class ExoModel extends GSYModel {
 
     List<String> urls = new ArrayList<>();
     int index = 0;
 
-    public GSYExoModel(List<String> urls, Map<String, String> mapHeadData, int index, boolean loop, float speed, boolean cache, File cachePath, String overrideExtension) {
+    public ExoModel(List<String> urls, Map<String, String> mapHeadData, int index, boolean loop, float speed, boolean cache, File cachePath, String overrideExtension) {
         super("", mapHeadData, loop, speed, cache, cachePath, overrideExtension);
         this.urls = urls;
         this.index = index;

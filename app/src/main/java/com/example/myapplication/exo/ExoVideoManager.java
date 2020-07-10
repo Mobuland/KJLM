@@ -20,10 +20,9 @@ import java.util.Map;
 import static com.shuyu.gsyvideoplayer.utils.CommonUtil.hideNavKey;
 
 /**
- * Created by guoshuyu on 2018/5/16.
  * 自定义管理器，连接自定义exo view 和 exo player，实现无缝切换效果
  */
-public class GSYExoVideoManager extends GSYVideoBaseManager {
+public class ExoVideoManager extends GSYVideoBaseManager {
     public static final int SMALL_ID = com.shuyu.gsyvideoplayer.R.id.small_id;
 
     public static final int FULLSCREEN_ID = com.shuyu.gsyvideoplayer.R.id.full_id;
@@ -31,33 +30,33 @@ public class GSYExoVideoManager extends GSYVideoBaseManager {
     public static String TAG = "GSYExoVideoManager";
 
     @SuppressLint("StaticFieldLeak")
-    private static GSYExoVideoManager videoManager;
+    private static ExoVideoManager videoManager;
 
 
-    private GSYExoVideoManager() {
+    private ExoVideoManager() {
         init();
     }
 
     /**
      * 单例管理器
      */
-    public static synchronized GSYExoVideoManager instance() {
+    public static synchronized ExoVideoManager instance() {
         if (videoManager == null) {
-            videoManager = new GSYExoVideoManager();
+            videoManager = new ExoVideoManager();
         }
         return videoManager;
     }
 
     @Override
     protected IPlayerManager getPlayManager() {
-        return new GSYExoPlayerManager();
+        return new ExoPlayerManager();
     }
 
     public void prepare(List<String> urls, Map<String, String> mapHeadData, int index,  boolean loop, float speed, boolean cache, File cachePath, String overrideExtension) {
         if (urls.size() == 0) return;
         Message msg = new Message();
         msg.what = HANDLER_PREPARE;
-        msg.obj = new GSYExoModel(urls, mapHeadData, index, loop, speed, cache, cachePath, overrideExtension);
+        msg.obj = new ExoModel(urls, mapHeadData, index, loop, speed, cache, cachePath, overrideExtension);
         sendMessage(msg);
         if (needTimeOutOther) {
             startTimeOutBuffer();
@@ -72,7 +71,7 @@ public class GSYExoVideoManager extends GSYVideoBaseManager {
         if (playerManager == null) {
             return;
         }
-        ((GSYExoPlayerManager)playerManager).previous();
+        ((ExoPlayerManager)playerManager).previous();
     }
 
     /**
@@ -82,7 +81,7 @@ public class GSYExoVideoManager extends GSYVideoBaseManager {
         if (playerManager == null) {
             return;
         }
-        ((GSYExoPlayerManager)playerManager).next();
+        ((ExoPlayerManager)playerManager).next();
     }
 
     /**
@@ -98,8 +97,8 @@ public class GSYExoVideoManager extends GSYVideoBaseManager {
         if (oldF != null) {
             backFrom = true;
             hideNavKey(context);
-            if (GSYExoVideoManager.instance().lastListener() != null) {
-                GSYExoVideoManager.instance().lastListener().onBackFullscreen();
+            if (ExoVideoManager.instance().lastListener() != null) {
+                ExoVideoManager.instance().lastListener().onBackFullscreen();
             }
         }
         return backFrom;
@@ -109,10 +108,10 @@ public class GSYExoVideoManager extends GSYVideoBaseManager {
      * 页面销毁了记得调用是否所有的video
      */
     public static void releaseAllVideos() {
-        if (GSYExoVideoManager.instance().listener() != null) {
-            GSYExoVideoManager.instance().listener().onCompletion();
+        if (ExoVideoManager.instance().listener() != null) {
+            ExoVideoManager.instance().listener().onCompletion();
         }
-        GSYExoVideoManager.instance().releaseMediaPlayer();
+        ExoVideoManager.instance().releaseMediaPlayer();
     }
 
 
@@ -120,8 +119,8 @@ public class GSYExoVideoManager extends GSYVideoBaseManager {
      * 暂停播放
      */
     public static void onPause() {
-        if (GSYExoVideoManager.instance().listener() != null) {
-            GSYExoVideoManager.instance().listener().onVideoPause();
+        if (ExoVideoManager.instance().listener() != null) {
+            ExoVideoManager.instance().listener().onVideoPause();
         }
     }
 
@@ -129,8 +128,8 @@ public class GSYExoVideoManager extends GSYVideoBaseManager {
      * 恢复播放
      */
     public static void onResume() {
-        if (GSYExoVideoManager.instance().listener() != null) {
-            GSYExoVideoManager.instance().listener().onVideoResume();
+        if (ExoVideoManager.instance().listener() != null) {
+            ExoVideoManager.instance().listener().onVideoResume();
         }
     }
 
@@ -141,8 +140,8 @@ public class GSYExoVideoManager extends GSYVideoBaseManager {
      * @param seek 是否产生seek动作,直播设置为false
      */
     public static void onResume(boolean seek) {
-        if (GSYExoVideoManager.instance().listener() != null) {
-            GSYExoVideoManager.instance().listener().onVideoResume(seek);
+        if (ExoVideoManager.instance().listener() != null) {
+            ExoVideoManager.instance().listener().onVideoResume(seek);
         }
     }
 

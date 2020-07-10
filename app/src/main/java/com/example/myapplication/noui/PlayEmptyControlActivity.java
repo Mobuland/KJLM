@@ -16,7 +16,6 @@ import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 
 /**
  * 单独的视频播放页面
- * Created by shuyu on 2016/11/11.
  */
 public class PlayEmptyControlActivity extends AppCompatActivity {
 

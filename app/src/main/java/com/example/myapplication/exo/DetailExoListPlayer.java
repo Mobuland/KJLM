@@ -10,9 +10,7 @@ import android.widget.RelativeLayout;
 import com.example.myapplication.R;
 import com.shuyu.gsyvideoplayer.GSYBaseActivityDetail;
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
-import com.shuyu.gsyvideoplayer.listener.LockClickListener;
 import com.shuyu.gsyvideoplayer.model.GSYVideoModel;
-import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 import com.shuyu.gsyvideoplayer.video.base.GSYVideoPlayer;
 
 import java.util.ArrayList;
@@ -23,11 +21,11 @@ import java.util.List;
 /**
  * 使用自定义的ExoPlayer，实现无缝切换下一集功能
  */
-public class DetailExoListPlayer extends GSYBaseActivityDetail<GSYExo2PlayerView> {
+public class DetailExoListPlayer extends GSYBaseActivityDetail<Exo2PlayerView> {
 
 
     NestedScrollView postDetailNestedScroll;
-    GSYExo2PlayerView detailPlayer;
+    Exo2PlayerView detailPlayer;
     RelativeLayout activityDetailPlayer;
     View next;
 
@@ -77,8 +75,8 @@ public class DetailExoListPlayer extends GSYBaseActivityDetail<GSYExo2PlayerView
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GSYExoVideoManager.instance().next();
-                ((GSYExo2PlayerView)detailPlayer.getCurrentPlayer()).nextUI();
+                ExoVideoManager.instance().next();
+                ((Exo2PlayerView)detailPlayer.getCurrentPlayer()).nextUI();
             }
         });
 
@@ -103,7 +101,7 @@ public class DetailExoListPlayer extends GSYBaseActivityDetail<GSYExo2PlayerView
         if (orientationUtils != null) {
             orientationUtils.backToProtVideo();
         }
-        if (GSYExoVideoManager.backFromWindowFull(this)) {
+        if (ExoVideoManager.backFromWindowFull(this)) {
             return;
         }
         super.onBackPressed();
@@ -111,7 +109,7 @@ public class DetailExoListPlayer extends GSYBaseActivityDetail<GSYExo2PlayerView
 
 
     @Override
-    public GSYExo2PlayerView getGSYVideoPlayer() {
+    public Exo2PlayerView getGSYVideoPlayer() {
         return detailPlayer;
     }
 
